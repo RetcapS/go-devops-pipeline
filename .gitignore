@@ -1,0 +1,12 @@
+# Terraform hassas dosyalar
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.pem
+terraform.tfvars
+
+# Ansible hassas dosyalar
+*.retry
+
+# Go binary dosyası
+main

@@ -1,0 +1,19 @@
+---
+- name: Go Web Uygulamasi Guncelleme
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Eski konteyneri durdur ve sil
+      command: docker rm -f huseyin-go-app
+      ignore_errors: yes
+
+    - name: Eski imajı sunucudan tamamen temizle (Zorla guncelleme icin sart)
+      command: docker rmi -f retcaps/huseyin-go-app:latest
+      ignore_errors: yes
+
+    - name: Docker Hub'dan EN GUNCELL imajı zorla cek
+      command: docker pull retcaps/huseyin-go-app:latest
+
+    - name: Yeni Web Uygulamasini 8081 portunda baslat
+      command: docker run -d --name huseyin-go-app -p 8081:8081 retcaps/huseyin-go-app:latest
