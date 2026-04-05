@@ -32,25 +32,23 @@ Projenin amacı; yazılan kodun donanımdan bağımsız çalışabilmesini (Dock
 Jenkins'in kodu çekme, test etme, Docker imajı oluşturma ve Docker Hub'a gönderme aşamalarının (Pipeline) başarıyla tamamlandığı ekran.
 
 ![Jenkins Pipeline Başarısı](screenShots/jenkins-basari.png)
-*(NOT: Yukarıdaki satıra Jenkins arayüzünde aşamaların yeşil renkte bittiğini gösteren ekran görüntüsünü koymalısın.)*
 
 ### ☁️ AWS Altyapısı ve Sunucu Detayları
 Terraform tarafından otomatik olarak oluşturulan AWS EC2 bulut sunucumuz.
 
 ![AWS EC2 Instance](screenShots/aws-sunucu.png)
-*(NOT: Yukarıdaki satıra az önce bana attığın, "Go-App-Produ..." yazan ve durumun yeşil renkle "Çalışıyor" olduğunu gösteren o harika AWS tablosunun resmini koymalısın.)*
+
 
 ### 🐳 Docker Hub İmaj Deposu
 Jenkins tarafından otomatik olarak derlenip buluta fırlatılan uygulamanın en güncel Docker imajı.
 
 ![Docker Hub Registry](screenShots/docker-hub-imaj.png)
-*(NOT: Yukarıdaki satıra Docker Hub sitesine girip retcaps/huseyin-go-app imajını gösteren ekran görüntüsünü koymalısın.)*
+
 
 ### 🚀 Canlı Web Uygulaması
 Pipeline'ın son adımı olarak AWS sunucumuzda `8081` portunda ayağa kalkan web tabanlı Go uygulamamız.
 
 ![Canlı Uygulama](screenShots/web-uygulama.png)
-*(NOT: Yukarıdaki satıra tarayıcıdan kendi IP adresine (http://63.183.0.0:8081) girip hesap makinesini çalıştırırken aldığın ekran görüntüsünü koymalısın.)*
 
 ---
 
@@ -63,3 +61,23 @@ Projeyi kendi ortamınızda test etmek isterseniz aşağıdaki adımları izleye
 cd devops-terraform
 terraform init
 terraform apply -auto-approve
+```
+## 🎯 Projenin Amacı
+
+Geliştirilen bir yazılımın sadece "yerel bilgisayarda çalışması", modern bilgisayar mühendisliği standartları için yeterli değildir. Bu projenin temel amacı; teorik yazılım geliştirme süreçlerini, endüstri standardı DevOps pratikleriyle birleştirerek tam otomatik bir üretim hattı kurmaktır. 
+
+Manuel müdahaleleri, insan kaynaklı hataları ve "benim makinemde çalışıyordu" problemini tamamen ortadan kaldırarak; kodun yazılmasından bulut ortamında canlıya alınmasına kadar geçen tüm yazılım yaşam döngüsünü (SDLC) güvenilir, tekrarlanabilir ve kodla yönetilebilir (IaC) bir mimariye oturtmak hedeflenmiştir.
+
+---
+
+## 📖 Genel Özet
+
+Bu proje, Go (Golang) ile geliştirilmiş web tabanlı bir uygulamanın, AWS bulut ortamına sıfır manuel müdahale ile dağıtılmasını sağlayan uçtan uca bir **CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)** hattıdır.
+
+Sistem şu şekilde işler:
+1.  **Geliştirme & Versiyon Kontrolü:** Yazılan Go kodu GitHub deposuna aktarılır.
+2.  **Sürekli Entegrasyon (CI):** Jenkins, güncel kodu çeker, bağımlılıkları yükler, uygulamayı Docker ile konteynerize eder ve oluşturduğu bu yeni imajı güvenli bir şekilde Docker Hub'a (Image Registry) yükler.
+3.  **Altyapı Otomasyonu (IaC):** Terraform, uygulamanın üzerinde koşacağı AWS EC2 sunucusunu ve ağ güvenlik kurallarını (Security Groups) kod ile saniyeler içinde inşa eder.
+4.  **Sürekli Dağıtım (CD):** Ansible, Terraform'un ayağa kaldırdığı bu bulut sunucusuna SSH ile bağlanır, ortamı hazırlar ve Docker Hub'daki en güncel imajı çekerek uygulamayı erişime açar.
+
+Sonuç olarak; kod gönderildiği an çalışan, altyapısı kodla yönetilen ve her ortamda aynı performansı veren modern bir bulut mimarisi elde edilmiştir.
