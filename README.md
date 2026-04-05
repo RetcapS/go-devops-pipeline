@@ -31,25 +31,25 @@ Projenin amacı; yazılan kodun donanımdan bağımsız çalışabilmesini (Dock
 ### ⚙️ Jenkins CI Pipeline Aşamaları
 Jenkins'in kodu çekme, test etme, Docker imajı oluşturma ve Docker Hub'a gönderme aşamalarının (Pipeline) başarıyla tamamlandığı ekran.
 
-![Jenkins Pipeline Başarısı](jenkins-basari.png)
+![Jenkins Pipeline Başarısı](screenShots/jenkins-basari.png)
 *(NOT: Yukarıdaki satıra Jenkins arayüzünde aşamaların yeşil renkte bittiğini gösteren ekran görüntüsünü koymalısın.)*
 
 ### ☁️ AWS Altyapısı ve Sunucu Detayları
 Terraform tarafından otomatik olarak oluşturulan AWS EC2 bulut sunucumuz.
 
-![AWS EC2 Instance](aws-sunucu.png)
+![AWS EC2 Instance](screenShots/aws-sunucu.png)
 *(NOT: Yukarıdaki satıra az önce bana attığın, "Go-App-Produ..." yazan ve durumun yeşil renkle "Çalışıyor" olduğunu gösteren o harika AWS tablosunun resmini koymalısın.)*
 
 ### 🐳 Docker Hub İmaj Deposu
 Jenkins tarafından otomatik olarak derlenip buluta fırlatılan uygulamanın en güncel Docker imajı.
 
-![Docker Hub Registry](docker-hub-imaj.png)
+![Docker Hub Registry](screenShots/docker-hub-imaj.png)
 *(NOT: Yukarıdaki satıra Docker Hub sitesine girip retcaps/huseyin-go-app imajını gösteren ekran görüntüsünü koymalısın.)*
 
 ### 🚀 Canlı Web Uygulaması
 Pipeline'ın son adımı olarak AWS sunucumuzda `8081` portunda ayağa kalkan web tabanlı Go uygulamamız.
 
-![Canlı Uygulama](web-uygulama.png)
+![Canlı Uygulama](screenShots/web-uygulama.png)
 *(NOT: Yukarıdaki satıra tarayıcıdan kendi IP adresine (http://63.183.0.0:8081) girip hesap makinesini çalıştırırken aldığın ekran görüntüsünü koymalısın.)*
 
 ---
